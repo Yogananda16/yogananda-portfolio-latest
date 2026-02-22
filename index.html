@@ -1,0 +1,1048 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Yogananda Manjunath</title>
+
+  <!-- =========================
+       CSS: THEME + GLOBAL
+       ========================= -->
+  <style>
+    :root {
+      --bg: #ffffff;
+      --panel: #ffffff;
+      --ink: #101010;
+      --muted: #444;
+      --border: #1c1c1c;
+      --shadow: rgba(0, 0, 0, .18);
+      --pink: #ff2f7d;
+      --green: #1f6b3a;
+      --transition: 180ms ease;
+    }
+
+    .home-frame {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: 6px 6px 0 var(--shadow);
+      position: relative;
+    }
+
+    .home-frame-inner {
+      padding: 26px 28px 32px;
+    }
+
+    html[data-theme="dark"] {
+      --bg: #0e0f10;
+      --panel: #0e0f10;
+      --ink: #f3f3f3;
+      --muted: #c8c8c8;
+      --border: rgba(255, 255, 255, .65);
+      --shadow: rgba(0, 0, 0, .55);
+      --pink: #ff2f7d;
+      --green: #44c06a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .sr-only {
+      position: absolute;
+      left: -9999px;
+    }
+
+    /* =========================
+       CSS: TOP NAVBAR
+       ========================= */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: var(--bg);
+      border-bottom: 2px solid var(--border);
+    }
+
+    .nav {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 18px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: .4px;
+      text-decoration: none;
+      border-bottom: 4px solid var(--green);
+      padding-bottom: 6px;
+    }
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+
+    .navlinks a {
+      text-decoration: none;
+      font-size: 15px;
+      letter-spacing: .5px;
+    }
+
+    .navlinks a.active {
+      text-decoration: underline;
+      text-underline-offset: 6px;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .icon-btn {
+      width: 38px;
+      height: 38px;
+      border: 2px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: transform var(--transition);
+    }
+
+    .icon-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .hamburger {
+      display: none;
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      border-top: 2px solid var(--border);
+      padding: 12px 18px 16px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .mobile-menu a {
+      display: block;
+      padding: 10px 0;
+      text-decoration: none;
+    }
+
+    @media (max-width: 820px) {
+      .navlinks {
+        display: none;
+      }
+
+      .hamburger {
+        display: grid;
+      }
+
+      .mobile-menu.open {
+        display: block;
+      }
+    }
+
+    /* =========================
+       CSS: PAGE WRAPPER
+       ========================= */
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 22px 18px 0;
+    }
+
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* =========================
+       CSS: LAYOUT (GRID + PANELS)
+       ========================= */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 260px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    @media (max-width: 980px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .side {
+        position: static !important;
+      }
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      box-shadow: 6px 6px 0 var(--shadow);
+      position: relative;
+    }
+
+    .panel-inner {
+      padding: 20px 20px 26px;
+    }
+
+    .top-accent {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: var(--pink);
+    }
+
+    .side {
+      position: sticky;
+      top: 98px;
+      /* below header */
+      padding-top: 8px;
+    }
+
+    /* =========================
+       CSS: HERO CARD (Nick-like)
+       ========================= */
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 24px;
+      align-items: start;
+      border: 1px solid var(--border);
+      box-shadow: none;
+      background: transparent;
+      position: relative;
+      margin-bottom: 0;
+    }
+
+    .hero .top-accent {
+      background: var(--pink);
+    }
+
+    .hero-left {
+      padding: 26px 26px 22px;
+    }
+
+    .hero-title {
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      margin: 4px 0 10px;
+    }
+
+    .hero-underline {
+      width: 64px;
+      height: 5px;
+      background: var(--green);
+      margin-bottom: 18px;
+    }
+
+    .hero-text {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14.6px;
+      max-width: 640px;
+      margin: 0 0 1em 0;
+    }
+    .hero-text:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .hero-right {
+      border-left: 1px solid var(--border);
+      padding: 20px;
+    }
+
+    .photo {
+      width: 100%;
+      height: 240px;
+      border: 1px solid var(--border);
+      background: rgba(0, 0, 0, .04);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    html[data-theme="dark"] .photo {
+      background: rgba(255, 255, 255, .05);
+    }
+
+    .photo small {
+      color: var(--muted);
+    }
+
+    .hero-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border: 2px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 13px;
+      transition: transform var(--transition);
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-right {
+        border-left: none;
+        border-top: 2px solid var(--border);
+      }
+
+      .photo {
+        height: 280px;
+      }
+    }
+
+    /* =========================
+       CSS: SECTION BLOCKS (Home)
+       ========================= */
+    .section {
+      padding: 18px 0 10px;
+    }
+
+    #about.section {
+      padding-top: 0;
+    }
+
+    .section[data-observe] {
+      min-height: 140px;
+      /* IMPORTANT for auto-highlight */
+      scroll-margin-top: 120px;
+      /* sticky header offset */
+    }
+
+    h2 {
+      font-size: 30px;
+      letter-spacing: 2px;
+      margin: 16px 0 10px;
+    }
+
+    .h2-underline {
+      width: 220px;
+      height: 5px;
+      background: var(--green);
+      margin: 8px 0 16px;
+    }
+
+    .p {
+      color: var(--muted);
+      line-height: 1.75;
+      font-size: 14.5px;
+      margin: 0 0 14px;
+    }
+
+    /* =========================
+       CSS: TOC (RIGHT PANEL)
+       ========================= */
+    .side-title {
+      text-align: center;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: var(--pink);
+      font-size: 15px;
+      padding: 18px 14px 10px;
+    }
+
+    .side-rule {
+      height: 1px;
+      background: rgba(0, 0, 0, .2);
+      margin: 0 14px 10px;
+    }
+
+    html[data-theme="dark"] .side-rule {
+      background: rgba(255, 255, 255, .2);
+    }
+
+    .toc,
+    .plist {
+      padding: 10px 14px 20px;
+    }
+
+    .toc a,
+    .plist a {
+      display: block;
+      padding: 10px 12px;
+      margin: 2px 0;
+      border-left: 4px solid transparent;
+      color: var(--ink);
+      opacity: .92;
+      text-decoration: none;
+      background: transparent;
+      white-space: nowrap;
+      font-size: 13px;
+      letter-spacing: .3px;
+      transition: background var(--transition), border-color var(--transition);
+    }
+
+    .toc a.active,
+    .plist a.active {
+      background: color-mix(in srgb, var(--pink) 14%, transparent);
+      border-left-color: var(--pink);
+      border-left-width: 4px;
+      font-weight: 800;
+      opacity: 1;
+    }
+
+    /* Mobile TOC dropdown */
+    .toc-mobile {
+      display: none;
+      padding: 10px 16px 18px;
+    }
+
+    .select {
+      width: 100%;
+      border: 2px solid var(--border);
+      padding: 10px 12px;
+      font-family: inherit;
+      background: transparent;
+      color: var(--ink);
+    }
+
+    @media (max-width: 980px) {
+      .toc {
+        display: none;
+      }
+
+      .toc-mobile {
+        display: block;
+      }
+    }
+
+    /* =========================
+       CSS: PROJECTS PAGE
+       ========================= */
+    .proj-card {
+      border: 2px solid var(--border);
+      box-shadow: 10px 10px 0 var(--shadow);
+      background: var(--panel);
+      margin-bottom: 22px;
+      overflow: hidden;
+    }
+
+    .proj-card-inner {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 0;
+    }
+
+    .proj-img {
+      border-right: 2px solid var(--border);
+      background: rgba(0, 0, 0, .04);
+      min-height: 220px;
+      display: grid;
+      place-items: center;
+    }
+
+    html[data-theme="dark"] .proj-img {
+      background: rgba(255, 255, 255, .05);
+    }
+
+    .proj-body {
+      padding: 18px 18px 16px;
+    }
+
+    .proj-title {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      margin: 0 0 10px;
+      border-bottom: 3px solid var(--green);
+      display: inline-block;
+      padding-bottom: 6px;
+    }
+
+    .tagrow {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      border: 1.8px solid var(--border);
+      padding: 4px 8px;
+      font-size: 12px;
+      background: transparent;
+    }
+
+    .tag.pink {
+      border-color: var(--pink);
+      color: var(--pink);
+    }
+
+    @media (max-width: 980px) {
+      .proj-card-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .proj-img {
+        border-right: none;
+        border-bottom: 2px solid var(--border);
+      }
+    }
+
+    /* =========================
+       CSS: FOOTER (ALL PAGES)
+       ========================= */
+    footer {
+      max-width: 1200px;
+      margin: 28px auto 40px;
+      padding: 18px 18px 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       HTML: TOP NAVBAR
+       ========================= -->
+  <header>
+    <div class="nav">
+      <a class="brand" href="#/#!about" data-nav="/">Yogananda Manjunath</a>
+
+      <nav class="navlinks" aria-label="Primary">
+        <a href="#/" data-nav="/">About</a>
+        <a href="#/projects" data-nav="/projects">Projects</a>
+        <a href="#/blog" data-nav="/blog">Blog</a>
+        <a href="#/resume" data-nav="/resume">Resume</a>
+        <a href="#/contact" data-nav="/contact">Contact</a>
+      </nav>
+
+      <div class="nav-right">
+        <button class="icon-btn" id="themeToggle" aria-label="Toggle theme">☀️</button>
+        <button class="icon-btn hamburger" id="hamburger" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#/" onclick="closeMobileMenu()" data-nav="/">About</a>
+      <a href="#/projects" onclick="closeMobileMenu()" data-nav="/projects">Projects</a>
+      <a href="#/blog" onclick="closeMobileMenu()" data-nav="/blog">Blog</a>
+      <a href="#/resume" onclick="closeMobileMenu()" data-nav="/resume">Resume</a>
+      <a href="#/contact" onclick="closeMobileMenu()" data-nav="/contact">Contact</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- =========================
+         HTML: PAGE / (HOME)
+         ========================= -->
+    <!-- =========================
+     HTML: PAGE / (HOME)
+     ========================= -->
+    <section class="page active" data-page="/">
+      <div class="grid">
+
+        <!-- LEFT -->
+        <div>
+
+          <!-- HOME OUTER FRAME (Nick-like: one big box) -->
+          <div class="home-frame">
+            <div class="top-accent"></div>
+
+            <div class="home-frame-inner">
+
+              <!-- ABOUT ME = hero + intro (clicking "About Me" scrolls here) -->
+              <div class="section" id="about" data-observe>
+              <div class="hero">
+                <div class="hero-left">
+                  <div class="hero-title">HI, I'M YOGANANDA 👋</div>
+                  <div class="hero-underline"></div>
+
+                  <p class="hero-text">
+                    I build Data Products, Automation, and AI systems that turn messy data into decisions people can trust. I focus on making solutions that are practical, clear, and built for real impact.
+                  </p>
+
+                  <p class="hero-text">
+                    AI Researcher, Data Analyst, and Backend Software Engineer — different roles, one focus: understanding systems deeply and making them work better.
+                  </p>
+
+                  <p class="hero-text">
+                    Outside of work, I train consistently and stay active. I work as a Sports Assistant at the University of New Haven, which keeps me grounded and disciplined. I strongly believe that no opportunity is bigger than health, and that real success is built by balancing growth, energy, and long-term consistency.
+                  </p>
+
+                  <p class="hero-text">
+                    Currently, I am supporting two nonprofit organizations by building automation, improving data workflows, and helping them scale. Solving real problems and contributing to meaningful social impact is a big part of why I do what I do.
+                  </p>
+                </div>
+
+                <div class="hero-right">
+                  <div class="photo">
+                    <small>Photo placeholder (add later)</small>
+                  </div>
+
+                  <div class="hero-btns">
+                    <a class="btn" href="#" target="_blank" rel="noreferrer">GitHub</a>
+                    <a class="btn" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
+                  </div>
+                </div>
+              </div>
+              </div>
+
+              <!-- =========================
+               HTML: HOME SECTIONS
+               (IDs must match TOC)
+               ========================= -->
+
+              <div class="section" id="experience" data-observe>
+                <h2>EXPERIENCE</h2>
+                <div class="h2-underline"></div>
+                <p class="p">Content later.</p>
+              </div>
+
+              <div class="section" id="education" data-observe>
+                <h2>EDUCATION</h2>
+                <div class="h2-underline"></div>
+                <p class="p">Content later.</p>
+              </div>
+
+              <div class="section" id="certifications" data-observe>
+                <h2>CERTIFICATIONS</h2>
+                <div class="h2-underline"></div>
+                <p class="p">Content later.</p>
+              </div>
+
+              <div class="section" id="languages" data-observe>
+                <h2>LANGUAGES</h2>
+                <div class="h2-underline"></div>
+                <p class="p">Content later.</p>
+              </div>
+
+              <div class="section" id="skills" data-observe>
+                <h2>SKILLS</h2>
+                <div class="h2-underline"></div>
+                <p class="p">Content later.</p>
+              </div>
+
+              <div class="section" id="tools" data-observe>
+                <h2>FRAMEWORKS &amp; TOOLS</h2>
+                <div class="h2-underline"></div>
+                <p class="p">Content later.</p>
+              </div>
+
+              <div class="section" id="hobbies" data-observe>
+                <h2>HOBBIES</h2>
+                <div class="h2-underline"></div>
+                <p class="p">Content later.</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT -->
+        <aside class="panel side">
+          <div class="top-accent"></div>
+          <div class="side-title">TABLE OF CONTENTS</div>
+          <div class="side-rule"></div>
+
+          <div class="toc-mobile">
+            <select class="select" id="tocSelect">
+              <option value="about">ABOUT ME</option>
+              <option value="experience">EXPERIENCE</option>
+              <option value="education">EDUCATION</option>
+              <option value="certifications">CERTIFICATIONS</option>
+              <option value="languages">LANGUAGES</option>
+              <option value="skills">SKILLS</option>
+              <option value="tools">FRAMEWORKS &amp; TOOLS</option>
+              <option value="hobbies">HOBBIES</option>
+            </select>
+          </div>
+
+          <div class="toc" id="toc">
+            <a href="#/#!about" data-scroll="about">ABOUT ME</a>
+            <a href="#/#!experience" data-scroll="experience">EXPERIENCE</a>
+            <a href="#/#!education" data-scroll="education">EDUCATION</a>
+            <a href="#/#!certifications" data-scroll="certifications">CERTIFICATIONS</a>
+            <a href="#/#!languages" data-scroll="languages">LANGUAGES</a>
+            <a href="#/#!skills" data-scroll="skills">SKILLS</a>
+            <a href="#/#!tools" data-scroll="tools">FRAMEWORKS &amp; TOOLS</a>
+            <a href="#/#!hobbies" data-scroll="hobbies">HOBBIES</a>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         HTML: PAGE /projects
+         ========================= -->
+    <section class="page" data-page="/projects">
+      <div class="grid">
+
+        <!-- LEFT -->
+        <div>
+          <div class="panel">
+            <div class="top-accent"></div>
+            <div class="panel-inner">
+              <h2 style="margin-top:10px;">MY PROJECTS</h2>
+              <div class="h2-underline"></div>
+              <p class="p">Content later.</p>
+            </div>
+          </div>
+
+          <!-- Project 1 -->
+          <div class="proj-card section" id="proj-1" data-proj-observe>
+            <div class="proj-card-inner">
+              <div class="proj-img"><small>image</small></div>
+              <div class="proj-body">
+                <div class="proj-title">PROJECT TITLE ONE</div>
+                <p class="p">Description later.</p>
+                <div class="tagrow">
+                  <span class="tag">Python</span>
+                  <span class="tag pink">AI</span>
+                  <span class="tag">SQL</span>
+                </div>
+                <div style="margin-top:14px;">
+                  <a class="btn" href="#" target="_blank" rel="noreferrer">GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="proj-card section" id="proj-2" data-proj-observe>
+            <div class="proj-card-inner">
+              <div class="proj-img"><small>image</small></div>
+              <div class="proj-body">
+                <div class="proj-title">PROJECT TITLE TWO</div>
+                <p class="p">Description later.</p>
+                <div class="tagrow">
+                  <span class="tag">Power BI</span>
+                  <span class="tag">AWS</span>
+                </div>
+                <div style="margin-top:14px;">
+                  <a class="btn" href="#" target="_blank" rel="noreferrer">GitHub</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT -->
+        <aside class="panel side">
+          <div class="top-accent"></div>
+          <div class="side-title">PROJECTS</div>
+          <div class="side-rule"></div>
+
+          <div class="plist" id="plist">
+            <a href="#/projects#!proj-1" data-proj="proj-1">Project Title One</a>
+            <a href="#/projects#!proj-2" data-proj="proj-2">Project Title Two</a>
+          </div>
+        </aside>
+
+      </div>
+    </section>
+
+    <!-- =========================
+         HTML: PAGE /blog
+         ========================= -->
+    <section class="page" data-page="/blog">
+      <div class="panel">
+        <div class="top-accent"></div>
+        <div class="panel-inner">
+          <h2 style="margin-top:10px;">BLOG</h2>
+          <div class="h2-underline"></div>
+          <p class="p">Add posts later.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         HTML: PAGE /resume
+         ========================= -->
+    <section class="page" data-page="/resume">
+      <div class="panel">
+        <div class="top-accent"></div>
+        <div class="panel-inner">
+          <h2 style="margin-top:10px;">RESUME</h2>
+          <div class="h2-underline"></div>
+          <p class="p">
+            Put your PDF link here. We’ll keep this route like Nick, and open the PDF in a new tab.
+          </p>
+          <a class="btn" id="resumeLink" href="#" target="_blank" rel="noreferrer">Open Resume PDF</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+         HTML: PAGE /contact
+         ========================= -->
+    <section class="page" data-page="/contact">
+      <div class="panel">
+        <div class="top-accent"></div>
+        <div class="panel-inner">
+          <h2 style="margin-top:10px;">CONTACT</h2>
+          <div class="h2-underline"></div>
+          <p class="p">Add contact details later.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================
+       HTML: FOOTER (ALL PAGES)
+       ========================= -->
+  <footer>
+    © <span id="year"></span> Yogananda Manjunath. All rights reserved.
+  </footer>
+
+  <!-- =========================
+       JS: THEME + MOBILE MENU
+       ========================= -->
+  <script>
+    // THEME TOGGLE
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    html.setAttribute('data-theme', savedTheme);
+    themeToggle.textContent = savedTheme === 'dark' ? '🌙' : '☀️';
+
+    themeToggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      themeToggle.textContent = next === 'dark' ? '🌙' : '☀️';
+      localStorage.setItem('theme', next);
+    });
+
+    // MOBILE MENU
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove('open');
+    }
+    window.closeMobileMenu = closeMobileMenu;
+
+    // =========================
+    // JS: ROUTER (#/ routes + #! section)
+    // =========================
+    const pages = [...document.querySelectorAll('.page')];
+
+    function getRoute() {
+      // #/projects
+      // #/projects#!proj-2
+      // #/#!skills  (home scroll)
+      const raw = location.hash || '#/';
+      const routePart = raw.split('#!')[0];      // "#/projects"
+      const route = routePart.replace('#', '') || '/';
+      return route;
+    }
+
+    function getHashBangTarget() {
+      const raw = location.hash || '';
+      const parts = raw.split('#!');
+      return parts.length > 1 ? parts[1] : '';
+    }
+
+    function setActiveNav(route) {
+      document.querySelectorAll('[data-nav]').forEach(a => {
+        a.classList.toggle('active', a.getAttribute('data-nav') === route);
+      });
+    }
+
+    function showPage(route) {
+      pages.forEach(p => {
+        p.classList.toggle('active', p.getAttribute('data-page') === route);
+      });
+
+      setActiveNav(route);
+
+      // unknown route -> home
+      const exists = pages.some(p => p.getAttribute('data-page') === route);
+      if (!exists) {
+        location.hash = '#/';
+        return;
+      }
+
+      const target = getHashBangTarget();
+      if (target) {
+        setTimeout(() => scrollToId(target), 60);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'auto' });
+      }
+    }
+
+    function scrollToId(id) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const headerOffset = 100;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const y = Math.max(0, Math.min(maxScroll, el.getBoundingClientRect().top + window.pageYOffset - headerOffset));
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+
+    window.addEventListener('hashchange', () => showPage(getRoute()));
+    showPage(getRoute());
+
+    // =========================
+    // JS: HOME TOC CLICK + SCROLLSPY
+    // =========================
+    const toc = document.getElementById('toc');
+    const tocLinks = toc ? [...toc.querySelectorAll('[data-scroll]')] : [];
+    const tocSelect = document.getElementById('tocSelect');
+
+    function setTocActive(id) {
+      tocLinks.forEach(a => a.classList.toggle('active', a.dataset.scroll === id));
+      if (tocSelect) tocSelect.value = id;
+    }
+
+    tocLinks.forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        location.hash = '#/#!' + a.dataset.scroll;
+      });
+    });
+
+    if (tocSelect) {
+      tocSelect.addEventListener('change', () => {
+        location.hash = '#/#!' + tocSelect.value;
+      });
+    }
+
+    const homeObserved = [...document.querySelectorAll('.page[data-page="/"] [data-observe]')];
+
+    function getActiveSectionId() {
+      const headerOffset = 110;
+      let bestId = homeObserved[0]?.id || 'about';
+      let bestDist = Infinity;
+      let anyInRange = false;
+
+      for (const sec of homeObserved) {
+        const rect = sec.getBoundingClientRect();
+        const dist = Math.abs(rect.top - headerOffset);
+        if (rect.top <= headerOffset + 40 && dist < bestDist) {
+          bestDist = dist;
+          bestId = sec.id;
+          anyInRange = true;
+        }
+      }
+      if (anyInRange) return bestId;
+      for (const sec of homeObserved) {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          const dist = Math.abs(rect.top - headerOffset);
+          if (dist < bestDist) {
+            bestDist = dist;
+            bestId = sec.id;
+          }
+        }
+      }
+      return bestId;
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (getRoute() !== '/') return;
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setTocActive(getActiveSectionId());
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    setTimeout(() => {
+      if (getRoute() === '/') setTocActive(getActiveSectionId());
+    }, 200);
+
+    // =========================
+    // JS: PROJECTS RIGHT LIST + SCROLLSPY
+    // =========================
+    const plist = document.getElementById('plist');
+    const projLinks = plist ? [...plist.querySelectorAll('[data-proj]')] : [];
+
+    function setProjActive(id) {
+      projLinks.forEach(a => a.classList.toggle('active', a.dataset.proj === id));
+    }
+
+    projLinks.forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (getRoute() !== '/projects') {
+          location.hash = '#/projects#!' + a.dataset.proj;
+          return;
+        }
+        scrollToId(a.dataset.proj);
+      });
+    });
+
+    const projObserved = [...document.querySelectorAll('[data-proj-observe]')];
+    const projIO = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      setProjActive(visible.target.id);
+    }, { threshold: [0.25, 0.4, 0.55], rootMargin: '-10% 0px -65% 0px' });
+
+    projObserved.forEach(el => projIO.observe(el));
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>
