@@ -1,0 +1,111 @@
+/* ===== White area after the hero (About → footer) ===== */
+:root{
+  --text-dark: #0f172a;      /* main text on white */
+  --muted-dark: #475569;     /* secondary text on white */
+  --panel-light:#ffffff;     /* card bg on white */
+  --border-light:#e5e7eb;    /* light borders */
+  --chip-bg:#eef2f7;         /* tag/pill bg on white */
+}
+
+/* Make all sections after the hero white */
+#about, #projects, #skills, #experience, #research, #resume, #contact, footer{
+  background:#ffffff;
+  color:var(--text-dark);
+}
+
+/* Subheads and muted text in white area */
+#about .section-sub, #projects .section-sub, #skills .section-sub,
+#experience .section-sub, #research .section-sub, #resume .section-sub,
+#contact .section-sub,
+#about .muted, #projects .muted, #skills .muted,
+#experience .muted, #research .muted, #resume .muted, #contact .muted{
+  color:var(--muted-dark);
+}
+
+/* Cards look like real cards on white */
+#about .card, #projects .card, #skills .card, #experience .card,
+#research .card, #contact .card{
+  background:var(--panel-light);
+  border:1px solid var(--border-light);
+  box-shadow:0 10px 30px rgba(2,6,23,.06);
+}
+
+/* KPI boxes inside About stay crisp on white */
+#about .kpi .item{
+  background:#fff;
+  border:1px solid var(--border-light);
+}
+
+/* Chips/pills on white */
+#projects .chip, #skills .chip, #research .chip{
+  background:var(--chip-bg);
+  color:var(--muted-dark);
+}
+
+/* Inputs/textareas should be light in the white area */
+#contact input, #contact textarea{
+  background:#ffffff;
+  border:1px solid var(--border-light);
+  color:var(--text-dark);
+}
+
+/* Optional: keep buttons readable on white (no change needed if you like current yellow) */
+#contact .btn.primary, #resume .btn-main.yellow{ color:#fff; }
+
+/* Optional: a gentle divider between hero and About */
+#about{ border-top:1px solid rgba(2,6,23,.06); }
+
+/* ===== NAVBAR SIZE ADJUSTMENT ===== */
+#site-header {
+  height: 55px;                /* reduce overall bar height */
+  background: #ffffff;         /* keep it white */
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05); /* subtle line for clarity */
+}
+
+#site-header .wrap.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 20px;             /* less horizontal space */
+}
+
+#site-header #menu li a {
+  padding: 6px 10px;           /* tighten spacing between menu items */
+  font-size: 15px;             /* slightly smaller text */
+}
+
+/* ===== PROFILE PHOTO CLEANUP ===== */
+.photo {
+  width: 280px;             /* adjust as you like */
+  height: auto;
+  display: block;
+  margin: 0 auto;           /* keeps it centered */
+  padding: 0;               /* removes inner white space */
+  background: none;         /* removes background box */
+  border: none;             /* removes border outline */
+  box-shadow: none;         /* removes white glow or frame */
+  border-radius: 10px;      /* optional – makes soft corners */
+}
+
+/* ===== HERO TITLE ONE-LINE FIX ===== */
+.hero-box h1 {
+  white-space: nowrap;           /* keeps the text in one line */
+  font-size: clamp(2rem, 5vw, 3.5rem);  /* responsive sizing */
+  line-height: 1.2;
+  text-align: center;            /* ensures it stays centered */
+}
+
+/* Optional: prevent overflow on small screens */
+@media (max-width: 768px) {
+  .hero-box h1 {
+    white-space: normal;         /* allow wrap on mobiles */
+    font-size: 2rem;
+  }
+}
+body {
+  background: red !important;
+}
+

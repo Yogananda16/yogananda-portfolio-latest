@@ -42,34 +42,41 @@
     @media(max-width:820px){ .navlinks{display:none;} .hamburger{display:grid;} .mobile-menu.open{display:block;} }
 
     /* LAYOUT */
-    main { max-width:1320px; margin:0 auto; padding:22px 14px 0; }
+    main { max-width:1320px; margin:0 auto; padding:22px 14px 32px; }
     .page { display:none; }
     .page.active { display:block; }
     .grid { display:grid; grid-template-columns:1fr 320px; gap:16px; align-items:start; }
+    .page[data-page="/"] .grid { grid-template-columns:1fr 240px; }
+    .page[data-page="/projects"] .grid { align-items:start; }
+    .page[data-page="/projects"] .side { position:sticky; top:98px; align-self:start; padding-bottom:0; margin-bottom:0; }
+    .page[data-page="/projects"] .panel.side { padding-bottom:0; }
+    .page[data-page="/projects"] .panel-inner h2 { text-align:left; }
+    .page[data-page="/projects"] .panel-inner .h2-underline { margin:8px 0 16px; }
     @media(max-width:980px){ .grid{grid-template-columns:1fr;} .side{position:static!important;} }
 
     .panel { background:var(--panel); border:1px solid var(--border); box-shadow:6px 6px 0 var(--shadow); position:relative; }
     .panel-inner { padding:20px 20px 26px; }
-    .top-accent { position:absolute; top:0; left:0; right:0; height:6px; background:var(--pink); }
-    .side { position:sticky; top:68px; padding-top:0; align-self:start; }
+    .top-accent { position:absolute; top:0; left:0; right:0; height:6px; background:linear-gradient(to right, var(--green), var(--pink)); }
+    .side { position:sticky; top:68px; padding-top:0; align-self:start; height:auto; min-height:0; }
+    .page[data-page="/"] .side { max-width:240px; width:240px; }
 
     /* HOME FRAME */
     .home-frame { background:var(--panel); border:1px solid var(--border); box-shadow:6px 6px 0 var(--shadow); position:relative; }
-    .home-frame-inner { padding:26px 28px 32px; }
+    .home-frame-inner { padding:26px 28px 40px; }
 
     /* HERO */
-    .hero { display:grid; grid-template-columns:1fr 240px; gap:24px; align-items:start; border:1px solid var(--border); background:transparent; position:relative; }
+    .hero { display:grid; grid-template-columns:1fr 300px; gap:24px; align-items:start; background:transparent; position:relative; }
     .hero-left { padding:26px 26px 22px; }
     .hero-title { font-size:48px; font-weight:900; letter-spacing:2px; margin:4px 0 10px; }
     .hero-underline { width:64px; height:5px; background:var(--green); margin-bottom:18px; }
     .hero-text { color:var(--muted); line-height:1.7; font-size:14.6px; max-width:640px; margin:0 0 1em 0; }
     .hero-text:last-of-type { margin-bottom:0; }
-    .hero-right { border-left:1px solid var(--border); padding:20px; align-self:start; }
-    .photo { width:100%; height:240px; border:1px solid var(--border); background:rgba(0,0,0,.04); display:grid; place-items:center; overflow:hidden; }
-    html[data-theme="dark"] .photo { background:rgba(255,255,255,.05); }
-    .photo small { color:var(--muted); }
-    .hero-btns { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
-    @media(max-width:980px){ .hero{grid-template-columns:1fr;} .hero-right{border-left:none; border-top:2px solid var(--border);} .photo{height:280px;} }
+    .hero-right { border:1.5px solid var(--border); border-radius:8px; padding:16px; background:var(--bg); align-self:start; }
+    .photo { border:2px solid var(--border); border-radius:4px; overflow:hidden; margin-bottom:16px; }
+    .photo img { width:100%; height:340px; object-fit:cover; object-position:center top; display:block; }
+    .hero-btns { display:flex; gap:12px; padding:0 4px; }
+    .hero-btns .btn { flex:1; text-align:center; }
+    @media(max-width:980px){ .hero{grid-template-columns:1fr;} .hero-right{border:1.5px solid var(--border); border-radius:8px;} .photo img{height:340px;} }
 
     .btn { display:inline-flex; justify-content:center; align-items:center; gap:8px; padding:10px 12px; border:2px solid var(--border); background:transparent; cursor:pointer; text-decoration:none; font-weight:800; font-size:13px; transition:transform var(--transition); }
     .btn:hover { transform:translateY(-1px); }
@@ -88,7 +95,7 @@
     html[data-theme="dark"] .exp-card { background:#1a1b1c; }
     .exp-card.accent-green { border-left-color:var(--green); }
     .exp-card .exp-title { font-size:18px; font-weight:800; letter-spacing:1.5px; margin:0 0 10px; color:var(--pink); }
-    .exp-card.accent-green .exp-title { color:var(--green); }
+    .exp-card.accent-green .exp-title { color:var(--pink); }
     .exp-card .exp-meta { font-size:14px; color:var(--muted); margin:0 0 18px; font-weight:600; }
     .exp-card .exp-meta span { font-weight:400; }
     .exp-card .exp-points { list-style:none; margin:0; padding:0; }
@@ -151,21 +158,27 @@
     .tools-col { color:var(--muted); font-size:15px; line-height:2.6; }
 
     /* TOC */
-    .side-title { text-align:center; font-weight:900; letter-spacing:2px; color:var(--pink); font-size:17px; padding:26px 14px 16px; }
-    .side-rule { height:1px; background:var(--border-light); margin:0 14px 10px; }
+    .side-title { text-align:center; font-weight:900; letter-spacing:1.5px; color:var(--pink); font-size:13px; padding:12px 14px 8px; }
+    .side-rule { height:1px; background:var(--border-light); margin:0 10px 4px; }
     .toc, .plist { padding:10px 14px 20px; }
+    #plist { padding:10px 14px 0; }
+    .toc { padding:6px 12px 16px; }
     .toc a, .plist a { display:block; padding:16px 20px; margin:0; border-left:4px solid transparent; color:var(--ink); opacity:.92; text-decoration:none; background:transparent; font-size:14px; letter-spacing:.8px; transition:background var(--transition), border-color var(--transition); }
+    .toc a { font-size:12.5px; padding:8px 12px; margin:0; letter-spacing:0.3px; }
     .toc a.active, .plist a.active { background:color-mix(in srgb, var(--pink) 14%, transparent); border-left-color:var(--pink); font-weight:800; opacity:1; }
+    .toc a.active { border-left-width:3px; }
     .toc-mobile { display:none; padding:10px 16px 18px; }
     .select { width:100%; border:2px solid var(--border); padding:10px 12px; font-family:inherit; background:transparent; color:var(--ink); }
     @media(max-width:980px){ .toc{display:none;} .toc-mobile{display:block;} }
 
     /* PROJECTS */
-    .proj-card { border:2px solid var(--border); box-shadow:10px 10px 0 var(--shadow); background:var(--panel); margin-bottom:22px; overflow:hidden; transition:transform 180ms ease, box-shadow 180ms ease; }
-    .proj-card:hover { transform:translateY(-3px); box-shadow:12px 12px 0 var(--shadow); }
+    .proj-cards-wrap { display:flex; flex-direction:column; gap:36px; margin-top:28px; margin-bottom:60px; padding-bottom:24px; }
+    .proj-card { border:2px solid var(--border); box-shadow:4px 4px 0 var(--shadow); background:var(--panel); overflow:hidden; transition:transform 180ms ease, box-shadow 180ms ease; }
+    .proj-card:hover { transform:translateY(-3px); box-shadow:6px 6px 0 var(--shadow); }
     .proj-body .btn-gh { background:var(--green); color:#fff; border:none; font-weight:800; }
-    .proj-card-inner { display:grid; grid-template-columns:260px 1fr; gap:0; }
-    .proj-img { border-right:2px solid var(--border); background:rgba(0,0,0,.04); min-height:220px; display:grid; place-items:center; }
+    .proj-card-inner { display:grid; grid-template-columns:1fr; gap:0; align-items:stretch; }
+    .proj-img { border-right:2px solid var(--border) !important; background:rgba(0,0,0,.04); align-self:stretch; display:flex; overflow:hidden; }
+    .proj-img img { width:100%; height:100%; object-fit:cover; display:block; flex:1; min-height:240px; }
     html[data-theme="dark"] .proj-img { background:rgba(255,255,255,.05); }
     .proj-body { padding:18px 18px 16px; }
     .proj-title { font-size:18px; font-weight:900; letter-spacing:1px; margin:0 0 10px; border-bottom:3px solid var(--green); display:inline-block; padding-bottom:6px; }
@@ -256,7 +269,7 @@
                     <p class="hero-text">Currently, I am supporting two nonprofit organizations by building automation, improving data workflows, and helping them scale. Solving real problems and contributing to meaningful social impact is a big part of why I do what I do.</p>
                   </div>
                   <div class="hero-right">
-                    <div class="photo"><small>Photo placeholder (add later)</small></div>
+                    <div class="photo"><img src="Profile.jpg" alt="Yogananda Manjunath" style="width:100%; height:100%; object-fit:cover; object-position:center top; display:block; border-radius:4px;"></div>
                     <div class="hero-btns">
                       <a class="btn" href="https://github.com/Yogananda16" target="_blank" rel="noreferrer">GitHub</a>
                       <a class="btn" href="https://www.linkedin.com/in/yogananda-manjunath-827113227/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -494,12 +507,36 @@
             <div class="top-accent"></div>
             <div class="panel-inner">
               <h2 style="margin-top:10px;">MY PROJECTS</h2>
+              <div class="h2-underline"></div>
               <p class="p">Here are some of the projects I've built across personal and professional work. Each one solves a real problem and reflects how I think and work.</p>
             </div>
           </div>
+          <div class="proj-cards-wrap">
           <div class="proj-card section" id="proj-1" data-proj-observe>
             <div class="proj-card-inner">
-              <div class="proj-img"><small>image</small></div>
+              <div class="proj-body">
+                <div class="proj-title">FAISS-INDEXED RAG PIPELINE FOR CLINICAL NLP — DIABETES &amp; HYPERTENSION QA</div>
+                <p class="p">Built a RAG system for answering clinical questions on diabetes and hypertension using 9 raw medical documents. Cleaned and chunked documents into 200-word segments with 40-word overlap, generated embeddings using MiniLM-L6-v2, indexed with FAISS for fast retrieval, and evaluated GPT-2 family models to reduce hallucinations and improve factual grounding.</p>
+                <div class="tagrow"><span class="tag pink">Python</span><span class="tag">RAG</span><span class="tag pink">NLP</span><span class="tag">FAISS</span><span class="tag">MiniLM Embeddings</span><span class="tag">GPT-2</span><span class="tag">LangChain</span></div>
+                <div style="margin-top:14px;"><a class="btn btn-gh" href="https://github.com/Yogananda16/chronic-care-rag" target="_blank" rel="noreferrer">GitHub</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="proj-card section" id="proj-2" data-proj-observe>
+            <div class="proj-card-inner">
+              <div class="proj-body">
+                <div class="proj-title">HUNGER GAP ANALYSIS — CAPITAL AREA FOOD DISTRIBUTION DASHBOARD</div>
+                <p class="p">Identified regional food insecurity gaps across DC, MD, and VA using Capital Area Food Bank data. Cleaned and structured raw government datasets in Excel, built an interactive Power BI dashboard comparing food distributed vs. unmet demand across regions. Revealed that Maryland had the largest shortfall despite highest distribution — enabling Downtown Evening Soup Kitchen to make data-driven resource planning decisions.</p>
+                <div class="tagrow"><span class="tag pink">Power BI</span><span class="tag">Excel</span><span class="tag">Data Analysis</span><span class="tag pink">Nonprofit</span><span class="tag">Dashboard</span><span class="tag">Public Data</span></div>
+                <div style="display:flex; gap:10px; margin-top:14px;">
+                  <a class="btn" href="https://github.com/Yogananda16/capital-area-food-insecurity-analysis" target="_blank" rel="noreferrer">GitHub</a>
+                  <a class="btn btn-gh" href="https://unhnewhaven-my.sharepoint.com/:u:/g/personal/ymanj2_unh_newhaven_edu/IQDTmOhnl9m2R5HiwRkGAPPUAZr83UFV0ph5a5Y-R-nYRFM?e=Cni8DA" target="_blank" rel="noreferrer">View Dashboard</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="proj-card section" id="proj-3" data-proj-observe>
+            <div class="proj-card-inner">
               <div class="proj-body">
                 <div class="proj-title">REAL-TIME TESLA STOCK SENTIMENT ANALYSIS &amp; PREDICTION</div>
                 <p class="p">Predicts Tesla stock movement by combining historical stock data and real-time news sentiment. Fetches stock data via yfinance and news via NewsAPI, merges and processes both, trains a machine learning model on AWS SageMaker, and serves predictions through a Streamlit web app. Visual insights are displayed using AWS QuickSight.</p>
@@ -508,16 +545,49 @@
               </div>
             </div>
           </div>
-          <div class="proj-card section" id="proj-2" data-proj-observe>
+          <div class="proj-card section" id="proj-4" data-proj-observe>
             <div class="proj-card-inner">
-              <div class="proj-img"><small>image</small></div>
               <div class="proj-body">
-                <div class="proj-title">PROJECT TITLE TWO</div>
-                <p class="p">Description later.</p>
-                <div class="tagrow"><span class="tag">Power BI</span><span class="tag">AWS</span></div>
-                <div style="margin-top:14px;"><a class="btn" href="#" target="_blank" rel="noreferrer">GitHub</a></div>
+                <div class="proj-title">MEDAI — AI-POWERED CLINICAL DECISION SUPPORT SYSTEM (MVP)</div>
+                <p class="p">Designed an AI-driven healthcare analytics MVP to assist clinicians with real-time risk monitoring and decision support. The system analyzes patient vitals and lab data to generate risk scores, visual dashboards, and automated clinical reports — reducing manual review time. Built as a concept prototype focusing on practical clinical workflow integration.</p>
+                <div class="tagrow"><span class="tag pink">Python</span><span class="tag">Machine Learning</span><span class="tag pink">Risk Prediction</span><span class="tag">Power BI</span><span class="tag">Data Analysis</span><span class="tag">MVP Concept</span></div>
+                <div style="margin-top:14px;"><a class="btn btn-gh" href="https://www.figma.com/make/DlIRQYDc9SCmnO6zX3KROE/Med-Ai-App-MVP-Workflow?node-id=0-4&t=v1NJrrGHPuTtHBq7-1" target="_blank" rel="noreferrer">View Prototype</a></div>
               </div>
             </div>
+          </div>
+          <div class="proj-card section" id="proj-5" data-proj-observe>
+            <div class="proj-card-inner">
+              <div class="proj-body">
+                <div class="proj-title">MTA WORKFORCE ETL PIPELINE — BUDGET VS ACTUAL STAFFING VARIANCE DASHBOARD</div>
+                <p class="p">Analyzed MTA department workforce budgets against actual staffing positions from 2017 to 2023. Cleaned and structured public NY state data in Excel, built pivot tables and KPI tiles tracking total budget, actuals, and variance. Delivered an interactive dashboard with year and status slicers — enabling non-technical stakeholders to identify over- and under-performing departments and make data-driven workforce planning decisions.</p>
+                <div class="tagrow"><span class="tag pink">Excel</span><span class="tag">Pivot Tables</span><span class="tag">KPI Reporting</span><span class="tag">Data Visualization</span><span class="tag">Workforce Analytics</span></div>
+                <div style="display:flex; gap:10px; margin-top:14px;">
+                  <a class="btn" href="https://github.com/Yogananda16/mta-department-workforce-analysis" target="_blank" rel="noreferrer">GitHub</a>
+                  <a class="btn btn-gh" href="https://1drv.ms/x/c/033950613b7335bd/IQCNrFia7JOqTKnjqM_XGCxMAU2j55gPhw7HPobWRPa0wXI?e=F4Spcq" target="_blank" rel="noreferrer">View Dashboard</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="proj-card section" id="proj-6" data-proj-observe>
+            <div class="proj-card-inner">
+              <div class="proj-body">
+                <div class="proj-title">SEGFORMER SEMANTIC SEGMENTATION — PIXEL LEVEL LEAF HEALTH DETECTION</div>
+                <p class="p">Built a transformer-based deep learning model for pixel-level semantic segmentation of leaf health from real-world images. Fine-tuned SegFormer with transfer learning, optimized using Dice loss combined with Cross-Entropy to accurately classify healthy vs dry leaf regions. Evaluated ground truth masks against predicted outputs to measure segmentation accuracy.</p>
+                <div class="tagrow"><span class="tag pink">Python</span><span class="tag">PyTorch</span><span class="tag pink">Deep Learning</span><span class="tag">SegFormer</span><span class="tag">Semantic Segmentation</span><span class="tag">Transformers</span><span class="tag">Dice Loss</span><span class="tag">TensorFlow</span></div>
+                <div style="margin-top:14px;"><a class="btn btn-gh" href="https://github.com/Yogananda16/leaf-health-semantic-segmentation" target="_blank" rel="noreferrer">GitHub</a></div>
+              </div>
+            </div>
+          </div>
+          <div class="proj-card section" id="proj-7" data-proj-observe>
+            <div class="proj-card-inner">
+              <div class="proj-body">
+                <div class="proj-title">DUAL-CNN REAL-TIME DUST &amp; STAIR DETECTION FOR AUTONOMOUS VACUUM</div>
+                <p class="p">Trained two separate TensorFlow CNN models — one to classify floor patches as dusty or clean (85% accuracy), and another to classify stair, plain floor, obstacle, or unknown regions. Integrated both models into a real-time simulation using OpenCV with memory-based movement logic to avoid re-cleaning visited areas. Enabled autonomous multi-floor cleaning by detecting stairs and virtually climbing to continue cleaning across floors.</p>
+                <div class="tagrow"><span class="tag pink">Python</span><span class="tag">TensorFlow</span><span class="tag pink">CNN</span><span class="tag">OpenCV</span><span class="tag">Computer Vision</span><span class="tag">Deep Learning</span><span class="tag">Keras</span><span class="tag">NumPy</span></div>
+                <div style="margin-top:14px;"><a class="btn btn-gh" href="https://github.com/Yogananda16/AI-based-Autonomous-Vacuum-cleaning-using-CNN" target="_blank" rel="noreferrer">GitHub</a></div>
+              </div>
+            </div>
+          </div>
           </div>
         </div>
         <aside class="panel side">
@@ -525,8 +595,13 @@
           <div class="side-title">PROJECTS</div>
           <div class="side-rule"></div>
           <div class="plist" id="plist">
-            <a href="#/projects#!proj-1" data-proj="proj-1">Real-Time Tesla Stock Sentiment Analysis</a>
-            <a href="#/projects#!proj-2" data-proj="proj-2">Project Title Two</a>
+            <a href="#/projects#!proj-1" data-proj="proj-1">Clinical RAG Question Answering</a>
+            <a href="#/projects#!proj-2" data-proj="proj-2">Capital Area Hunger Analytics</a>
+            <a href="#/projects#!proj-3" data-proj="proj-3">Tesla Stock Sentiment Analysis</a>
+            <a href="#/projects#!proj-4" data-proj="proj-4">MedAI Clinical Decision Support</a>
+            <a href="#/projects#!proj-5" data-proj="proj-5">MTA Workforce ETL Dashboard</a>
+            <a href="#/projects#!proj-6" data-proj="proj-6">Leaf Health Semantic Segmentation</a>
+            <a href="#/projects#!proj-7" data-proj="proj-7">Dual-CNN Autonomous Vacuum</a>
           </div>
         </aside>
       </div>
@@ -534,7 +609,7 @@
 
     <!-- BLOG -->
     <section class="page" data-page="/blog">
-      <div class="panel"><div class="top-accent"></div><div class="panel-inner"><h2 style="margin-top:10px;">BLOG</h2><p class="p">Add posts later.</p></div></div>
+      <div class="panel"><div class="top-accent"></div><div class="panel-inner"><p class="p">Redirecting to Medium...</p><p class="p"><a href="https://medium.com/@ymanjunathds" target="_blank" rel="noopener noreferrer" style="color:var(--green);">Click here if not redirected</a></p></div></div>
     </section>
 
     <!-- RESUME -->
@@ -621,10 +696,13 @@
     function getRoute() { const raw = location.hash||'#/'; return raw.split('#!')[0].replace('#','')||'/'; }
     function getHashBangTarget() { const p=(location.hash||'').split('#!'); return p.length>1?p[1]:''; }
     function setActiveNav(route) { document.querySelectorAll('[data-nav]').forEach(a=>a.classList.toggle('active',a.getAttribute('data-nav')===route)); }
+    function syncProjSidebarHeight(){const wrap=document.querySelector('.proj-cards-wrap');const sidebar=document.querySelector('[data-page="/projects"] aside.side');if(wrap&&sidebar){const headerPanel=document.querySelector('[data-page="/projects"] .panel');const headerHeight=headerPanel?headerPanel.offsetHeight+36:0;sidebar.style.maxHeight=(headerHeight+wrap.offsetHeight)+'px';sidebar.style.overflow='hidden';}}
     function showPage(route) {
+      if(route==='/blog'){window.open('https://medium.com/@nandayoga000','_blank');location.hash='#/';return;}
       pages.forEach(p=>p.classList.toggle('active',p.getAttribute('data-page')===route));
       setActiveNav(route);
       if(!pages.some(p=>p.getAttribute('data-page')===route)){location.hash='#/';return;}
+      if(route==='/projects'){setTimeout(syncProjSidebarHeight,100);}
       const t=getHashBangTarget();
       if(t){setTimeout(()=>scrollToId(t),60);}else{window.scrollTo({top:0,behavior:'auto'});}
     }
@@ -634,6 +712,7 @@
       window.scrollTo({top:y,behavior:'smooth'});
     }
     window.addEventListener('hashchange',()=>showPage(getRoute()));
+    window.addEventListener('resize',syncProjSidebarHeight);
     showPage(getRoute());
     const toc=document.getElementById('toc');
     const tocLinks=toc?[...toc.querySelectorAll('[data-scroll]')]:[];
